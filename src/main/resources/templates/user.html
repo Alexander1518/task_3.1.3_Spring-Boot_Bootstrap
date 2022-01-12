@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User table</title>
+
+</head>
+<body>
+<style>
+    table {
+        font-family: Arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    td, th {
+        border: 3px solid #000000;
+        text-align: center;
+        padding: 8px;
+    }
+
+
+
+</style>
+<table>
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Surname</td>
+        <td>Email</td>
+        <td>Age</td>
+        <div class="row" th:if="${#request.isUserInRole('ADMIN')}">
+            <td>Role</td>
+        </div>
+    </tr>
+    </thead>
+
+    <tr>
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getName()}"></td>
+        <td th:text="${user.getSurname()}"></td>
+        <td th:text="${user.getEmail()}"></td>
+        <td th:text="${user.getAge()}"></td>
+        <div class="row" th:if="${#request.isUserInRole('ADMIN')}">
+            <td>
+                <div th:each="role : ${user.getRoles()}">
+                    <p th:text="${role.getName()}"></p>
+                </div>
+            </td>
+        </div>
+    </tr>
+</table>
+<br/>
+<div style="text-align: left;">
+    <form th:method="GET" th:action="@{/logout}">
+        <input type="submit" value="LOGOUT">
+    </form>
+</div>
+<div class="row" th:if="${#request.isUserInRole('ADMIN')}" style="text-align: right;">
+    <form th:method="GET" th:action="@{/admin/update/{id}(id=${user.id})}">
+        <input type="submit" value="UPDATE">
+    </form>
+    <form th:method="DELETE" th:action="@{/admin/{id}(id=${user.id})}">
+        <input type="submit"  value="DELETE">
+    </form>
+    <form th:method="GET" th:action="@{/admin}">
+        <input type="submit" value="MAIN MENU">
+    </form>
+</div>
+<br/>
+</body>
+</html>

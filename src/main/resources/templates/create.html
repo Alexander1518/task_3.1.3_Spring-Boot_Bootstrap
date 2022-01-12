@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>CREATE USER</title>
+
+</head>
+
+
+<body>
+
+<form th:method="POST" th:action="@{/admin}" th:object="${user}">
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <br/>
+    <label for="surname">Enter surname: </label>
+    <input type="text" th:field="*{surname}" id="surname"/>
+    <br/>
+    <br/>
+    <label for="email">Enter email: </label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <br/>
+    <br/>
+    <label for="age">Enter age: </label>
+    <input type="text" th:field="*{age}" id="age"/>
+    <br/>
+    <br/>
+    <label for="password">Enter password: </label>
+    <input type="text" th:field="*{password}" id="password"/>
+    <br/>
+    <br/>
+    <label>Role:
+        <th:block th:each="role: ${roles}">
+            <input type="checkbox" name="nameRoles"
+                   th:text="${role.name}" th:value="${role.name}"/>
+        </th:block>
+        <br/>
+        <br/>
+        <input type="submit" value="CREATE"/>
+    </label>
+</form>
+<br/>
+<form th:method="GET" th:action="@{/admin}">
+    <input type="submit" value="MAIN MENU">
+</form>
+<br/>
+<form th:method="GET" th:action="@{/logout}">
+    <input type="submit" value="LOGOUT">
+</form>
+<br/>
+</body>
+</html>
