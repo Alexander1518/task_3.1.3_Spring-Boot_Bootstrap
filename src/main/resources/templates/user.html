@@ -25,10 +25,10 @@
     <thead>
     <tr>
         <td>Id</td>
-        <td>Name</td>
-        <td>Surname</td>
-        <td>Email</td>
+        <td>First Name</td>
+        <td>Last Name</td>
         <td>Age</td>
+        <td>Email</td>
         <div class="row" th:if="${#request.isUserInRole('ADMIN')}">
             <td>Role</td>
         </div>
@@ -37,10 +37,10 @@
 
     <tr>
         <td th:text="${user.getId()}"></td>
-        <td th:text="${user.getName()}"></td>
-        <td th:text="${user.getSurname()}"></td>
-        <td th:text="${user.getEmail()}"></td>
+        <td th:text="${user.getFirstName()}"></td>
+        <td th:text="${user.getLastName()}"></td>
         <td th:text="${user.getAge()}"></td>
+        <td th:text="${user.getEmail()}"></td>
         <div class="row" th:if="${#request.isUserInRole('ADMIN')}">
             <td>
                 <div th:each="role : ${user.getRoles()}">

@@ -30,8 +30,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
                                         Authentication authentication) throws IOException, ServletException {
 
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
-        User user = userService.getUserByName(authentication.getName());
-        if (roles.contains("ROLE_ADMIN")) {
+        User user = userService.getUserByEmail(authentication.getName());
+        if (roles.contains("ADMIN")) {
             httpServletResponse.sendRedirect("/admin");
         } else {
             httpServletResponse.sendRedirect("/user/" + user.getId());

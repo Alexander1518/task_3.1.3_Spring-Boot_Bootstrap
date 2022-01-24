@@ -57,14 +57,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User getUserByName(String name) {
-        return userDao.getUserByName(name);
+    public User getUserByEmail(String email) {
+        return userDao.getUserByEmail(email);
     }
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = getUserByName(username);
+        User user = getUserByEmail(username);
         if (user == null) {
             throw new UsernameNotFoundException(String.format("User '%s' not found", username));
         }
