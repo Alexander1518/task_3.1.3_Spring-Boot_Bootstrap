@@ -1,6 +1,8 @@
 package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +25,10 @@ public class AdminController {
 
 
     @GetMapping()
-    public String printUsers(Model model) {
-        model.addAttribute("user", userService.listUsers());
+    public String printUsers(@AuthenticationPrincipal User user, Model model) {
+        model.addAttribute("user", user);
+        model.addAttribute("users", userService.listUsers());
+        model.addAttribute("roles", roleService.listRoles());
         return "/admin";
     }
 
