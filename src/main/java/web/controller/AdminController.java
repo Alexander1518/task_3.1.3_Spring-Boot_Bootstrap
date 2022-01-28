@@ -2,7 +2,6 @@ package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,19 +23,12 @@ public class AdminController {
     }
 
 
-    @GetMapping()
+    @GetMapping
     public String printUsers(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("user", user);
         model.addAttribute("users", userService.listUsers());
         model.addAttribute("roles", roleService.listRoles());
         return "/admin";
-    }
-
-    @GetMapping("/create")
-    public String newUser(Model model) {
-        model.addAttribute("roles", roleService.listRoles());
-        model.addAttribute("user", new User());
-        return "create";
     }
 
     @PostMapping
@@ -53,14 +45,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/update/{id}")
-    public String editUser(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("roles",roleService.listRoles());
-        model.addAttribute("user", userService.getUserById(id));
-        return "update";
-    }
-
-    @PostMapping("/update/{id}")
+    @PostMapping("/{id}")
     public String updateUser(@ModelAttribute("user") User user,
                              @RequestParam(value = "nameRoles") String [] nameRoles) {
         user.setRoles(roleService.getSetOfRoles(nameRoles));
