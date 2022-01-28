@@ -6,12 +6,12 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.6.2</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>task_3.1.1_Spring-Boot_REST</artifactId>
+	<artifactId>task_3.1.3_Spring-Boot_Bootstrap</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>task_3.1.1_Spring-Boot_REST</name>
+	<name>task_3.1.3_Spring-Boot_Bootstrap</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -67,5 +67,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
